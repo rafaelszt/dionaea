@@ -184,12 +184,25 @@ class LogJsonHandler(ihandler):
         logger.warning(connection_type)
         con = icd.con
         logger.warning(icd)
+        
+        logger.warning(dir(icd))
+
         try:
-            logger.warning(dir(icd))
-            logger.warning(icd.incident)
-            logger.warning(icd.incident())
+            logger.warning(icd.dump())
         except:
-            pass
+            logger.warning('icd dump')
+
+        try:
+            logger.warning(icd.get())
+        except:
+            logger.warning('icd get')
+
+        try:
+            logger.warning(icd.__dict__)
+        except:
+            logger.warning('icd dict')
+
+        
         try:
             if con.protocol == 'smbd':
                 logger.warning('md5')
