@@ -196,7 +196,6 @@ class LogJsonHandler(ihandler):
             "src_port": con.remote.port,
             "timestamp": datetime.utcnow().isoformat()
         }
-        logger.warning(vars(icd))
         if hasattr(icd, 'md5hash'):
             data['md5hash'] = icd.md5hash
 

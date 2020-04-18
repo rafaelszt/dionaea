@@ -67,7 +67,6 @@ class storehandler(ihandler):
     def handle_incident(self, icd):
         logger.warning("storing file")
         logger.warning('storehandler - handle_incident')
-        logger.warning(vars(icd))
         p = icd.path
         # ToDo: use sha1 or sha256
         md5 = md5file(p)
@@ -80,7 +79,6 @@ class storehandler(ihandler):
             i.con = icd.con
         i.md5hash = md5
         i.report()
-        logger.warning(vars(i))
 
         try:
             os.stat(n)
@@ -97,4 +95,3 @@ class storehandler(ihandler):
         i.url = icd.url
         i.md5hash = md5
         i.report()
-        logger.warning(vars(i))
