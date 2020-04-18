@@ -180,7 +180,14 @@ class LogJsonHandler(ihandler):
         return v
 
     def _serialize_connection(self, icd, connection_type):
-        logger.warning('_serialize_connection')
+        logger.warning('func: _serialize_connection')
+        logger.warning(connection_type)
+        try:
+            if connection_type == 'smbd':
+                logger.warning('md5')
+                logger.warning(icd.md5hash)
+        except:
+            logger.warning('no md5?')
         con = icd.con
 
         data = {
