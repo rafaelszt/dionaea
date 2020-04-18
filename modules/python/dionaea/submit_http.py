@@ -69,6 +69,7 @@ class handler(ihandler):
         pass
 
     def handle_incident_dionaea_download_complete_unique(self, icd):
+        logger.warning('handle_incident_dionaea_download_complete_unique')
         cookie = str(uuid.uuid4())
 
         i = incident("dionaea.upload.request")
@@ -115,9 +116,10 @@ class handler(ihandler):
     handle_incident_dionaea_download_complete_again = handle_incident_dionaea_download_complete_unique
 
     def handle_incident_dionaea_modules_python_submithttp_result(self, icd):
+        logger.warning('handle_incident_dionaea_modules_python_submithttp_result')
         fh = open(icd.path, mode="rb")
         c = fh.read()
-        logger.info("submithttp result: {0}".format(c))
+        logger.warning("submithttp result: {0}".format(c))
 
         cookie = icd._userdata
         mr = self.cookies[cookie]
@@ -153,8 +155,9 @@ class handler(ihandler):
             del self.cookies[cookie]
 
     def handle_incident_dionaea_modules_python_submithttp_uploadresult(self, icd):
+        logger.warning('handle_incident_dionaea_modules_python_submithttp_uploadresult')
         fh = open(icd.path, mode="rb")
         c = fh.read()
-        logger.info("submithttp uploadresult: {0}".format(c))
+        logger.warning("submithttp uploadresult: {0}".format(c))
 
         del self.cookies[icd._userdata]

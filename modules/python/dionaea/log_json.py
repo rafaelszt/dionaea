@@ -89,7 +89,7 @@ class LogJsonHandlerLoader(IHandlerLoader):
 
 class LogJsonHandler(ihandler):
     def __init__(self, path, config=None):
-        logger.debug("%s ready!", self.__class__.__name__)
+        logger.warning("%s ready!", self.__class__.__name__)
         ihandler.__init__(self, path)
         self.path = path
         self._config = config
