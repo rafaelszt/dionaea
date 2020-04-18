@@ -51,7 +51,7 @@ class StoreHandlerLoader(IHandlerLoader):
 
 class storehandler(ihandler):
     def __init__(self, path, config=None):
-        logger.debug("%s ready!" % (self.__class__.__name__))
+        logger.warning("%s ready!" % (self.__class__.__name__))
         ihandler.__init__(self, path)
 
         dionaea_config = g_dionaea.config().get("dionaea")
@@ -65,7 +65,8 @@ class storehandler(ihandler):
                 raise LoaderError("Not allowed to create files in the '%s' directory", self.download_dir)
 
     def handle_incident(self, icd):
-        logger.debug("storing file")
+        logger.warning("storing file")
+        logger.warning('storehandler - handle_incident')
         p = icd.path
         # ToDo: use sha1 or sha256
         md5 = md5file(p)
@@ -82,9 +83,9 @@ class storehandler(ihandler):
         try:
             os.stat(n)
             i = incident("dionaea.download.complete.again")
-            logger.debug("file %s already existed" % md5)
+            logger.warning("file %s already existed" % md5)
         except OSError:
-            logger.debug("saving new file %s to %s" % (md5, n))
+            logger.warning("saving new file %s to %s" % (md5, n))
             os.link(p, n)
             i = incident("dionaea.download.complete.unique")
         i.file = n

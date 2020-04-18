@@ -44,17 +44,18 @@ class SubmitHTTPPostLoader(IHandlerLoader):
 
 class SubmitHTTPPost(ihandler):
     def __init__(self, path, config=None):
-        logger.debug("%s ready!", self.__class__.__name__)
+        logger.warning("%s ready!", self.__class__.__name__)
         ihandler.__init__(self, path)
         self.tos = config.get("submit", [])
 
     def handle_incident(self, icd):
-        logger.debug("submitting file")
+        logger.warning('SubmitHTTPPost - handle_incident')
+        logger.warning("submitting file")
 
         for name, to in self.tos.items():
             urls = to.get("urls")
             if urls is None or len(urls) == 0:
-                logger.warn("your configuration lacks urls to submit to %s", name)
+                logger.warning("your configuration lacks urls to submit to %s", name)
                 continue
 
             for url in urls:
