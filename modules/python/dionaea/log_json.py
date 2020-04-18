@@ -24,6 +24,7 @@ from datetime import datetime
 import json
 import logging
 from urllib.parse import urlparse
+import sys
 
 from dionaea import IHandlerLoader
 from dionaea.core import ihandler
@@ -194,6 +195,14 @@ class LogJsonHandler(ihandler):
             "src_port": con.remote.port,
             "timestamp": datetime.utcnow().isoformat()
         }
+        try:
+            logger.warning("trying to log md5")
+            data['md5hash'] = icd.md5hash
+            data['url'] = icd.url
+        except:
+            logger.warning("unable trying to log md5")
+            logger.error(sys.exc_info()[0])
+        
         self.attacks[con] = data
 
     def handle_incident_dionaea_connection_tcp_listen(self, icd):
