@@ -180,6 +180,7 @@ class LogJsonHandler(ihandler):
         return v
 
     def _serialize_connection(self, icd, connection_type):
+        logger.warning('_serialize_connection')
         con = icd.con
 
         data = {
@@ -195,6 +196,7 @@ class LogJsonHandler(ihandler):
             "src_port": con.remote.port,
             "timestamp": datetime.utcnow().isoformat()
         }
+        logger.warning(vars(icd))
         if hasattr(icd, 'md5hash'):
             data['md5hash'] = icd.md5hash
 
