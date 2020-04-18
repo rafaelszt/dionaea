@@ -186,6 +186,8 @@ class LogJsonHandler(ihandler):
         logger.warning(icd)
         try:
             logger.warning(dir(icd))
+            logger.warning(icd.incident)
+            logger.warning(icd.incident())
         except:
             pass
         try:
