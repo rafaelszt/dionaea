@@ -195,13 +195,11 @@ class LogJsonHandler(ihandler):
             "src_port": con.remote.port,
             "timestamp": datetime.utcnow().isoformat()
         }
-        try:
-            logger.warning("trying to log md5")
+        if hasattr(icd, 'md5hash'):
             data['md5hash'] = icd.md5hash
+
+        if hasattr(icd, 'url'):
             data['url'] = icd.url
-        except:
-            logger.warning("unable trying to log md5")
-            logger.error(sys.exc_info()[0])
         
         self.attacks[con] = data
 
